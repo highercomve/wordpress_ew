@@ -35,7 +35,7 @@ get_header(); ?>
           <div class="entry-content">
             <?php the_excerpt() ?>
             <p>
-              autor: <?php the_author_link() ?>
+              autor: <?php the_author_posts_link() ?>
               <?php the_author_meta('aim') ?>
               <?php echo get_avatar(get_the_author_meta('user_email')) ?>
             </p>

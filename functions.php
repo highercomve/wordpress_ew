@@ -20,3 +20,34 @@ if ( ! function_exists( 'temeitor_setup' ) ):
     // ) );
   }
 endif;
+
+// Para archivos javascript
+add_action('wp_enqueue_scripts', 'add_temeitor_scripts');
+
+if(! function_exists(add_temeitor_scripts)):
+  function add_temeitor_scripts() {
+    /* Add SCRIPTS */
+    wp_register_script(
+      'bootstrap',
+      get_template_directory_uri().'/js/bootstrap.min.js',
+      array('jquery-core'),
+      '3.3.1',
+      true
+    );
+    wp_enqueue_script('bootstrap');
+    /* Finish Add SCRIPTS */
+    /* Add Styles */
+    wp_register_style(
+      'bootstrap-style',
+      get_template_directory_uri().'/css/bootstrap.min.css'
+    );
+    wp_register_style(
+      'temeitor',
+      get_stylesheet_uri(),
+      array('bootstrap-style')
+    );
+    wp_enqueue_style('temeitor');
+    /* Finish Add Styles */
+  }
+endif;
+
