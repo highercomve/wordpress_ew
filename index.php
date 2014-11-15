@@ -11,12 +11,12 @@
  * @package temeitor
  */
 get_header(); ?>
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+  <div id="primary" class="content-area col-md-9">
+    <main id="main" class="site-main row" role="main">
     <?php if ( have_posts() ) : ?>
       <?php /* Start the Loop */ ?>
       <?php while ( have_posts() ) : the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(array('col-md-6', 'otra-clase')); ?>>
           <header class="entry-header">
             <h1>
               <a href="<?php the_permalink() ?>" title="<?php the_title() ?>">
@@ -54,5 +54,9 @@ get_header(); ?>
     <?php endif; ?>
     </main><!-- #main -->
   </div><!-- #primary -->
+
+  <div id="sidebar" class="col-md-3">
+    <?php get_sidebar(); ?>
+  </div>
   
 <?php get_footer(); ?>

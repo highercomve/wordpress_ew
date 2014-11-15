@@ -20,10 +20,8 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-  <a class="skip-link screen-reader-text" href="#content">
-    <?php _e( 'Skip to content', 'temeitor' ); ?>
-  </a>
+<div id="page" class="hfeed site container">
+  <?php dynamic_sidebar('sidebar-1') ?>
 
   <header id="masthead" class="site-header" role="banner">
     <div class="site-branding">
@@ -37,12 +35,25 @@
       </h2>
     </div><!-- .site-branding -->
 
-    <nav id="site-navigation" class="main-navigation" role="navigation">
-      <button class="menu-toggle">
-        <?php _e( 'Primary Menu', 'temeitor' ); ?>
-      </button>
-      <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+    <nav id="site-navigation" class="main-navigation navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mi_menu">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <?php wp_nav_menu( array( 
+                          'theme_location' => 'principal',
+                          'container'       => 'div',
+                          'container_class' => 'collapse navbar-collapse',
+                          'container_id'    => 'mi_menu',
+                          'menu_class'      => 'nav navbar-nav',
+                          'menu_id'         => 'menu-primary'
+                         ) 
+                       ); ?>
     </nav><!-- #site-navigation -->
   </header><!-- #masthead -->
 
-  <div id="content" class="site-content">
+  <div id="content" class="site-content row">
