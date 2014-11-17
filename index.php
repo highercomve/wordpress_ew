@@ -46,11 +46,13 @@ get_header(); ?>
           </footer><!-- .entry-footer -->
         </article><!-- #post-## -->
       <?php endwhile; ?>
-      <?php 
+      <?php
         // pagination TODO
       ?>
     <?php else : ?>
-      <?php get_template_part( 'content', 'none' ); ?>
+      <h3>
+        Lo sentimos no hay contenido relacionado a su busqueda.
+      </h3>
     <?php endif; ?>
     </main><!-- #main -->
   </div><!-- #primary -->
@@ -58,5 +60,5 @@ get_header(); ?>
   <div id="sidebar" class="col-md-3">
     <?php get_sidebar(); ?>
   </div>
-  
+
 <?php get_footer(); ?>
