@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 add_action( 'after_setup_theme', 'temeitor_setup' );
 
@@ -34,7 +34,30 @@ if(! function_exists(add_temeitor_scripts)):
       '3.3.1',
       true
     );
-    wp_enqueue_script('bootstrap');
+    wp_register_script(
+      'masonry-mio',
+      get_template_directory_uri().'/js/masonry.pkgd.min.js',
+      array('bootstrap'),
+      '3.1.5',
+      true
+    );
+    wp_register_script(
+      'imageload',
+      get_template_directory_uri().'/js/imagesloaded.pkgd.min.js',
+      array('masonry-mio'),
+      '3.1.8',
+      true
+    );
+    wp_register_script(
+      'temeitor',
+      get_template_directory_uri().'/js/temeitor.js',
+      array('imageload'),
+      '1.0.0',
+      true
+    );
+
+    wp_enqueue_script('temeitor');
+
     /* Finish Add SCRIPTS */
     /* Add Styles */
     wp_register_style(

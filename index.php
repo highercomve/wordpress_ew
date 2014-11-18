@@ -10,47 +10,13 @@
  *
  * @package temeitor
  */
-get_header(); ?>
+get_header(); ?>is_page
   <div id="primary" class="content-area col-md-9">
-    <main id="main" class="site-main row" role="main">
+    <main id="main" class="site-main pinteresco" role="main">
     <?php if ( have_posts() ) : ?>
-      <?php /* Start the Loop */ ?>
-      <?php while ( have_posts() ) : the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(array('col-md-6', 'otra-clase')); ?>>
-          <header class="entry-header">
-            <h1>
-              <a href="<?php the_permalink() ?>" title="<?php the_title() ?>">
-                <?php the_title() ?>
-              </a>
-            </h1>
-            <figure>
-              <?php the_post_thumbnail('large'); ?>
-            </figure>
-            <h6>
-              <?php _e('Dia', 'temeitor') ?>: <?php the_date(); ?>
-              <br>
-              <?php _e('Hora', 'temeitor') ?>: <?php the_time(); ?>
-            </h6>
-          </header><!-- .entry-header -->
-          <div class="entry-content">
-            <?php the_excerpt() ?>
-            <p>
-              autor: <?php the_author_posts_link() ?>
-              <?php the_author_meta('aim') ?>
-              <?php echo get_avatar(get_the_author_meta('user_email')) ?>
-            </p>
-            <?php the_category(', ') ?>
-            <?php the_tags('antes ', 'separador', 'despues') ?>
-          </div><!-- .entry-content -->
-          <footer class="entry-footer">
-          </footer><!-- .entry-footer -->
-        </article><!-- #post-## -->
-      <?php endwhile; ?>
-      <?php 
-        // pagination TODO
-      ?>
+      <?php get_template_part('loop') ?>
     <?php else : ?>
-      <?php get_template_part( 'content', 'none' ); ?>
+      <?php get_template_part( 'loop', 'none' ); ?>
     <?php endif; ?>
     </main><!-- #main -->
   </div><!-- #primary -->
