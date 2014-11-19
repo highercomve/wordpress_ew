@@ -118,3 +118,70 @@ if(! function_exists(registrar_widgets)):
   }
 
 endif;
+
+add_action( 'init', 'new_taxonomies' );
+
+function new_taxonomies() {
+  // create a new taxonomy
+  register_taxonomy(
+    'page- ', // Nombre que usara el sistema
+    'page',
+    array(
+      'hierarchical' => true,
+      'show_ui' => true,
+      'query_var' => true,
+      'label' => __( 'Paises' ), // Nombre que va a ver el usuario
+      'rewrite' => array( 'slug' => 'page-pais' ) //Nombre que tendra en la ruta
+    )
+  );
+  register_taxonomy(
+    'post-pais', // Nombre que usara el sistema
+    'post',
+    array(
+      'hierarchical' => true,
+      'show_ui' => true,
+      'query_var' => true,
+      'label' => __( 'Paises' ), // Nombre que va a ver el usuario
+      'rewrite' => array( 'slug' => 'post-pais' ) //Nombre que tendra en la ruta
+    )
+  );
+  register_taxonomy(
+    'products-category', // Nombre que usara el sistema
+    'productos',
+    array(
+      'hierarchical' => true,
+      'show_ui' => true,
+      'query_var' => true,
+      'label' => __( 'Categorias' ), // Nombre que va a ver el usuario
+      'rewrite' => array( 'slug' => 'products-category' ) //Nombre que tendra en la ruta
+    )
+  );
+}
+
+add_action( 'init', 'create_post_type' );
+
+function create_post_type() {
+  register_post_type( 'productos',
+    array(
+      'labels' => array(
+        'name' => __( 'Productos' ),
+        'singular_name' => __( 'Producto' )
+      ),
+    'menu_position' => 5, 
+    'query_var' => true,
+    'rewrite' => array('slug' => 'productos'),
+    'public' => true,
+    'publicly_queryable' => true,
+    'has_archive' => true,
+    'menu_icon' => 'dashicons-cart',
+    'supports' => array(
+        'editor',
+        'title',
+        'author',
+        'thumbnail',
+        'excerpt'
+      )
+    )
+  );
+}
+
