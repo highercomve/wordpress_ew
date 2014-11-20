@@ -1,4 +1,6 @@
 <?php /* Start the Loop */ ?>
+
+
 <?php while ( have_posts() ) : the_post(); ?>
   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <figure>
@@ -26,6 +28,7 @@
       <p>
         <?php _e("<b>Categorias:</b> ", "temeitor") ?>
         <?php the_category(', ') ?>
+        <?php the_terms( $post->ID, 'products-category', "", ", ", "") ?>
       </p>
       <p> 
         <?php the_tags(__("<b>Etiquetas:</b> ", "temeitor"), ", ") ?>

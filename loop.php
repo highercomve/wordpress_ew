@@ -1,4 +1,28 @@
 <?php /* Start the Loop */ ?>
+
+<?php 
+  // global $query_string;
+  // query_posts($query_string."cat=-3&tag=asdasdasd"); 
+  // query_posts("cat=3");
+  global $wp_query;
+  $mis_opciones = array(
+    'post_type' => 'productos',
+    'tax_query' => array(
+      array(
+        'taxonomy' => 'products-category',
+        'field'    => 'slug',
+        'terms'    => array( 'mi-caterogia' ),
+      ),
+    ),
+  );
+  // print_r($wp_query->query_vars); 
+  $args = array_merge( $wp_query->query_vars, $mis_opciones);
+  query_posts($args); 
+?>
+
+
+
+
 <?php while ( have_posts() ) : the_post(); ?>
   <article id="post-<?php the_ID(); ?>" <?php post_class(array('col-md-6', 'otra-clase')); ?>>
     <header class="entry-header">
