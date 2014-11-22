@@ -5,6 +5,7 @@ add_action( 'after_setup_theme', 'temeitor_setup' );
 if ( ! function_exists( 'temeitor_setup' ) ):
   function temeitor_setup() {
     add_editor_style();
+    add_theme_support('html5');
     add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
     add_theme_support( 'post-thumbnails' );
     // add_image_size('nombre',640,250,true);
@@ -179,9 +180,45 @@ function create_post_type() {
         'title',
         'author',
         'thumbnail',
-        'excerpt'
+        'excerpt',
+        'custom-fields'
       )
     )
   );
 }
 
+add_action('add_meta_boxes', 'agregar_mis_custom_fields');
+
+if(! function_exists(agregar_mis_custom_fields)) {
+
+  function agregar_mis_custom_fields() {
+    add_meta_box(
+      'product-price',
+      __('Precio del producto'),
+      'add_products_price_from',
+      'productos',
+      'side',
+      'default'
+    );
+  }
+
+}
+
+function add_products_price_from($post) {
+
+  $precio = get_post_meta($post->ID, 'product-price', true);
+
+  echo '<div class="product-price-form">';
+  echo '<label for="product-price">Precio del producto</label><br>';
+  echo '<input type="date" value="';
+  echo $precio;
+  echo '" id="product-price" name="product-price">';
+  echo '</div>';
+}
+
+add_action('save_post', 'save_products_price');
+
+function save_products_price($post_id) {
+  $mydata = sanitize_text_field( $_POST['product-price'] );
+  update_post_meta( $post_id, 'product-price', $mydata );
+}

@@ -12,7 +12,19 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
+<title>
+<?php if(is_single()): ?>
+  <?php 
+    $post = get_post();
+    // print_r($post);
+    echo $post->post_title;   
+  ?>
+<?php else: ?>
+  <?php wp_title( '|', true, 'right' ); ?>
+<?php endif; ?>
+</title>
+<meta description="<?php echo $post->post_excerpt ?>">
+
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 

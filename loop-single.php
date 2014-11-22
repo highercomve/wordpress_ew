@@ -18,6 +18,7 @@
       </h6>
     </header><!-- .entry-header -->
     <div class="entry-content">
+      <h4>Precio: <?php echo get_post_meta(get_the_ID(), 'product-price', true) ?></h4>
       <?php if (is_single()): ?>
         <?php the_content() ?>
       <?php else: ?>
@@ -54,3 +55,4 @@
 <?php 
   // pagination TODO
 ?>
+<?php get_template_part('content', 'comments') ?>
